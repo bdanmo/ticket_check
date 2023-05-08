@@ -1,9 +1,8 @@
 import requests
 import json
-import keyring
 from datetime import datetime, timedelta
-API_TOKEN = keyring.get_password("check_ticket", "API_TOKEN")
-ENGBOT_TOKEN = keyring.get_password("check_ticket", "ENGBOT_TOKEN")
+from static.secret import API_TOKEN, ENGBOT_TOKEN
+
 BASE_URL = "https://shsupport.jitbit.com/helpdesk/"
 API_TICKETS_ENDPOINT = f"{BASE_URL}api/Tickets"
 TECH_ID = 10654784

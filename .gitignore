@@ -1,5 +1,5 @@
-set_tokens.py
 .venv/
 build/
 dist/
 *.spec
+static/
