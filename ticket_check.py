@@ -2,13 +2,12 @@ import requests
 import json
 import keyring
 from datetime import datetime, timedelta
-
-USER_BMO = "U02HB4RNNPQ"
 API_TOKEN = keyring.get_password("check_ticket", "API_TOKEN")
 ENGBOT_TOKEN = keyring.get_password("check_ticket", "ENGBOT_TOKEN")
 BASE_URL = "https://shsupport.jitbit.com/helpdesk/"
 API_TICKETS_ENDPOINT = f"{BASE_URL}api/Tickets"
 TECH_ID = 10654784
+SLACK_CH = "C056RFX3SP4"
 
 now = datetime.now()
 two_days_ago = now - timedelta(hours=48)
@@ -41,14 +40,14 @@ else:
             print(f"Skipping ticket {ticket['IssueID']}")
     if len(overdue_tickets) > 0:
         print(f"Found {len(overdue_tickets)} overdue tickets")
-        message = f"Tickets not updated in 48 hours:\n"
+        message = f"Tickets not updated in at least 48 hours:\n"
         for ticket in overdue_tickets:
             ticket_url = f"{BASE_URL}Ticket/{ticket['IssueID']}"
             message += f"- <{ticket_url}|#{ticket['IssueID']}> - {ticket['Subject']}\n"
 
         data = {
             "token": ENGBOT_TOKEN,
-            "channel": USER_BMO,
+            "channel": SLACK_CH,
             "as_user": True,
             "text": message,
         }
