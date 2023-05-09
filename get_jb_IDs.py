@@ -1,9 +1,7 @@
 import requests
-import keyring
 import json
+from static.secret import API_TOKEN
 
-#get API_TOKEN from keyring
-API_TOKEN = keyring.get_password("check_ticket", "API_TOKEN")
 your_helpdesk_url = "https://shsupport.jitbit.com/helpdesk"
 users_endpoint = f"{your_helpdesk_url}/api/Users"
 
